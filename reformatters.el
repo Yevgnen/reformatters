@@ -87,6 +87,13 @@
   :program "shfmt"
   :args '("-i" "4"))
 
+;;;###autoload (autoload 'prettier-yaml-format-buffer "reformatters.el" nil t)
+;;;###autoload (autoload 'prettier-yaml-format-region "reformatters.el" nil t)
+;;;###autoload (autoload 'prettier-yaml-format-on-save-mode "reformatters.el" nil t)
+(reformatter-define prettier-yaml-format
+  :program "prettier"
+  :args '("--parser" "yaml"))
+
 (provide 'reformatters)
 
 ;;; reformatters.el ends here
