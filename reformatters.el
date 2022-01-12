@@ -27,6 +27,7 @@
 
 ;;; Code:
 
+(require 'subr-x)
 (require 'reformatter)
 
 ;;;###autoload (autoload 'black-format-buffer "reformatters.el" nil t)
@@ -93,6 +94,30 @@
 (reformatter-define prettier-yaml-format
   :program "prettier"
   :args '("--parser" "yaml"))
+
+(defcustom reformatters-formtters
+  '((rust-mode . rustfmt-format)
+    (python-mode . (autoflake-format isort-format black-format))
+    (web-mode . html-beautify-format)
+    (html-mode . html-beautify-format)
+    (js-mode . js-beautify-format)
+    (css-mode . css-beautify-format)
+    (json-mode . json-format)
+    (sh-mode . shfmt-format))
+  "Formatter alist.")
+
+;;;###autoload
+(defun reformatters-format-buffer ()
+  (interactive)
+  (if-let* ((formatters (cdar (cl-remove-if-not #'(lambda (x)
+                                                    (derived-mode-p (car x)))
+                                                reformatters-formtters))))
+      (progn
+        (unless (listp formatters)
+          (setq formatters (list formatters)))
+        (dolist (formater formatters)
+          (call-interactively formater)))
+    (user-error "No formatter associated with %s." major-mode)))
 
 (provide 'reformatters)
 
