@@ -1,0 +1,31 @@
+#+title: Reformatters
+
+* Introduction
+
+Formatter collections for [[https://github.com/purcell/emacs-reformatter][reformatter]].
+
+** Installation
+
+*** ~straight.el~
+
+#+begin_src emacs-lisp
+(use-package reformatters
+  :straight (:host github :repo "Yevgnen/reformatters"))
+#+end_src
+
+* Commands
+
+| Command              | Formatter     |
+|----------------------+---------------|
+| black-format         | black         |
+| isort-format         | isort         |
+| autoflake-format     | autoflake     |
+| json-format          | jq            |
+| rustfmt-format       | rustfmt       |
+| html-beautify-format | html-beautify |
+| css-beautify-format  | css-beautify  |
+| js-beautify-format   | js-beautify   |
+| shfmt-format         | shfmt         |
+| prettier-yaml-format | prettier      |
+
+There is also a unified command ~reformatters-format-buffer~ which uses formatters defined in ~reformatters-formtters~.
