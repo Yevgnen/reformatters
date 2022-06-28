@@ -95,6 +95,13 @@
   :program "prettier"
   :args '("--parser" "yaml"))
 
+;;;###autoload (autoload 'prettier-toml-format-buffer "reformatters.el" nil t)
+;;;###autoload (autoload 'prettier-toml-format-region "reformatters.el" nil t)
+;;;###autoload (autoload 'prettier-toml-format-on-save-mode "reformatters.el" nil t)
+(reformatter-define prettier-toml-format
+  :program "prettier"
+  :args '("--parser" "toml"))
+
 (defcustom reformatters-formtters
   '((rust-mode . rustfmt-format)
     (python-mode . (autoflake-format isort-format black-format))
