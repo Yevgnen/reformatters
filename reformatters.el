@@ -103,14 +103,16 @@
   :args '("--parser" "toml"))
 
 (defcustom reformatters-formtters
-  '((rust-mode . rustfmt-format)
-    (python-mode . (autoflake-format isort-format black-format))
-    (web-mode . html-beautify-format)
-    (html-mode . html-beautify-format)
-    (js-mode . js-beautify-format)
-    (css-mode . css-beautify-format)
-    (json-mode . json-format)
-    (sh-mode . shfmt-format))
+  '((rust-mode . rustfmt-format-buffer)
+    (python-mode . (autoflake-format-buffer isort-format-buffer black-format-buffer))
+    (web-mode . html-beautify-format-buffer)
+    (html-mode . html-beautify-format-buffer)
+    (js-mode . js-beautify-format-buffer)
+    (css-mode . css-beautify-format-buffer)
+    (json-mode . json-format-buffer)
+    (sh-mode . shfmt-format-buffer)
+    (yaml-mode . prettier-yaml-format-buffer)
+    (conf-toml-mode . prettier-toml-format-buffer))
   "Formatter alist.")
 
 ;;;###autoload
